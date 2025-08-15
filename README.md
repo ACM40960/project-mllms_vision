@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
 ---
 
-This project benchmarks **Multimodal Large Language Models (MLLMs)** on fine-grained visual verification tasks — starting with **twin detection**, and eventually including **disguise detection**. It compares state-of-the-art models like **InternVL2.5**, **Qwen2.5-VL**, and **LLaVA-OneVision** (planned) against traditional **OpenCV baselines**.
+This project benchmarks **Multimodal Large Language Models (MLLMs)** on fine-grained visual verification tasks starting with **twin detection**, and eventually including **disguise detection**. It compares state-of-the-art models like **InternVL2.5**, **Qwen2.5-VL**, and **LLaVA-OneVision** (planned) against traditional **OpenCV baselines**.
 
 ---
 
@@ -13,7 +13,7 @@ This project benchmarks **Multimodal Large Language Models (MLLMs)** on fine-gra
 
 ### Tasks
 1. **Twin Verification**
-   - Identify whether two face images depict the same person — including identical twins with subtle visual differences.
+   - Identify whether two face images depict the same person including identical twins with subtle visual differences.
 
 2. **Disguise Detection** *(Planned)*
    - Detect if a person is in disguise, wearing makeup, masks, or otherwise camouflaged.
