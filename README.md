@@ -72,17 +72,20 @@ twin_dataset = TwinDataset(
 )
 ```
 ### 3. Run Benchmark
+```python
 from multi_mllm_runner import evaluate_twin_model
 
 results = evaluate_twin_model(
     model_id="OpenGVLab/InternVL-Chat-V1-2",
     twin_pairs=[(label, img1, img2) for label, img1, img2 in twin_dataset]
 )
+```
 
 ### Save Results
+```python
 import pandas as pd
 pd.DataFrame(results).to_csv('twin_internvl_results.csv', index=False)
-
+```
 
 ## Directory Structure
 project-mllms_vision/
