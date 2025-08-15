@@ -51,6 +51,7 @@ cd project-mllms_vision
 
 # Install required Python packages
 pip install -r requirements.txt
+```
 
 
 ---
@@ -69,7 +70,7 @@ twin_dataset = TwinDataset(
     csv_path='/content/drive/MyDrive/vision_benchmark/metadata/twin_face_pairs_absolute.csv',
     root_dir='/content/drive/MyDrive/vision_benchmark/data/twin_faces'
 )
-
+```
 ### 3. Run Benchmark
 from multi_mllm_runner import evaluate_twin_model
 
