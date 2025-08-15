@@ -3,8 +3,6 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
 [![Hugging Face](https://img.shields.io/badge/Models-HuggingFace-yellow)](https://huggingface.co/)  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sihvenforucd/project-mllms_vision/blob/main/notebooks/twin_benchmark.ipynb)
-
 ---
 
 This project benchmarks **Multimodal Large Language Models (MLLMs)** on fine-grained visual verification tasks — starting with **twin detection**, and eventually including **disguise detection**. It compares state-of-the-art models like **InternVL2.5**, **Qwen2.5-VL**, and **LLaVA-OneVision** (planned) against traditional **OpenCV baselines**.
