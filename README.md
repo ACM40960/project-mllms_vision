@@ -129,8 +129,8 @@ python run_benchmark.py --model Qwen2.5-VL --task disguise
 
 ## 👨‍🔬 Authors
 
-- **Kiara** — Principal Researcher | UCD MSc | Vision-Language Systems
-- **Smart Optimization** — Project Lead & Benchmark Design
+- **Nikunj Drolia** — UCD MSc | Data and Computational Science
+- **Shiven Singh** — UCD MSc | Data and Computational Science
 
 ---
 
@@ -139,14 +139,3 @@ python run_benchmark.py --model Qwen2.5-VL --task disguise
 MIT License
 
 ---
-
-## 📚 Citation
-
-```bibtex
-@misc{visbench3,
-  title={VISBENCH-3: Fine-Grained Vision Reasoning Benchmark for MLLMs},
-  author={Kiara, Smart Optimization},
-  year={2025},
-  url={https://github.com/your-username/VISBENCH-3}
-}
-```
