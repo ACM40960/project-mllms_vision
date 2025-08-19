@@ -1,117 +1,152 @@
-# VisBench-3: Benchmarking Robustness Of Multimodel Large Language Models
 
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)  
-[![Hugging Face](https://img.shields.io/badge/Models-HuggingFace-yellow)](https://huggingface.co/)  
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
----
+# 🔍 VISBENCH-3: Benchmarking MLLMs on Fine-Grained Visual Reasoning Tasks
 
-This project benchmarks **Multimodal Large Language Models (MLLMs)** on fine-grained visual verification tasks starting with **twin detection**, and eventually including **disguise detection**. It compares state-of-the-art models like **InternVL2.5**, **Qwen2.5-VL**, and **LLaVA-OneVision** (planned) against traditional **OpenCV baselines**.
+VISBENCH-3 is a comprehensive benchmark for evaluating **Multimodal Large Language Models (MLLMs)** on challenging fine-grained visual reasoning tasks:
 
----
-
-## Project Overview
-
-### Tasks
-1. **Twin Verification**
-   - Identify whether two face images depict the same person including identical twins with subtle visual differences.
-
-2. **Disguise Detection** *(Planned)*
-   - Detect if a person is in disguise, wearing makeup, masks, or otherwise camouflaged.
+- 👯‍♀️ **Twin Face Verification**
+- 🥸 **Disguise Detection**
+- 🐾 **Wildlife Species Recognition (Night-vision)**
 
 ---
 
-## Pipeline
+## ✨ Highlights
 
-1. **Data Preparation**
-   - CSV metadata files (`twin_face_pairs_absolute.csv`, `disguises_absolute.csv`) stored in `metadata/`
-   - Face images stored in `data/twin_faces/` and `data/disguise_faces/`
-
-2. **Data Loading**
-   - `TwinDataset` & `DisguiseDataset` classes parse CSVs and load image pairs directly, with optional preprocessing.
-
-3. **Model Inference**
-   - Supports MLLMs via Hugging Face `transformers`.  
-   - Pairwise comparison for twins — side-by-side combined images.  
-   - Caption-based evaluation for disguised faces (planned).
-
-4. **Evaluation**
-   - Metrics: Accuracy, Precision, Recall, F1-score.  
-   - Baseline comparison using OpenCV-based face matching.
+- 📊 Benchmarked **Qwen2.5-VL**, **LLaMA-4 Maverick**, **LLaMA-4 Scout** across 3 diverse tasks
+- 📈 Evaluated using **Accuracy**, **F1 Score**, and **Robustness**
+- 🧠 Included architectural analysis for each model
+- 📦 Open-sourced pipeline for replication and extension
 
 ---
 
-## Installation
+## 🏗️ Architecture Overview
+
+### 🔹 [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct)
+- Developed by Alibaba.
+- Based on the **Transformer decoder** with **Vision and Language fusion** at token-level.
+- Accepts **images and text jointly** via a vision encoder + projection to LLM tokens.
+
+### 🔸 [LLaMA-4 Maverick](https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8)
+- Meta’s open-weight LLM with **vision support** using embedded visual tokens.
+- Uses **dual-encoder fusion** between vision encoder and text decoder.
+- Fine-tuned for **multimodal instruction-following**.
+
+### 🔸 [LLaMA-4 Scout](https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct)
+- An enhanced LLaMA variant for **instruction-tuned visual reasoning**.
+- Integrates attention mechanisms across image patches + text.
+- Performs better on **binary vision classification** tasks (like twin/disguise).
+
+---
+
+## 📊 Evaluation Visuals
+
+### 🔹 Dataset Difficulty Ranking
+![Dataset Difficulty](assets/plot1_difficulty.png)
+
+> Higher F1 → Easier for the model. Twin is easier than Wildlife.
+
+---
+
+### 🔹 Radar Plot: Overall Model Performance
+![Radar All Models](assets/plot2_radar.png)
+
+> LLaMA-Scout consistently ranks highest across all metrics.
+
+---
+
+### 🔹 F1 Score Trend by Dataset
+![F1 Robustness](assets/plot3_f1_trend.png)
+
+> Qwen2.5 degrades more gracefully across difficult datasets.
+
+---
+
+### 🔹 Accuracy Comparison
+![Accuracy Bar](assets/plot4_accuracy.png)
+
+> Scout outperforms on disguise detection; Maverick is stronger on wildlife.
+
+---
+
+### 🔹 F1 Score Comparison
+![F1 Bar](assets/plot5_f1.png)
+
+---
+
+### 🔹 F1 Table Summary
+![F1 Table](assets/plot6_table.png)
+
+> Best average: **LLaMA-Scout (0.6032)**
+
+---
+
+### 🔹 Best Model Per Dataset (Pie Chart)
+![Best Model Pie](assets/plot7_pie.png)
+
+> LLaMA-Scout wins on 2 out of 3 datasets.
+
+---
+
+## 🧪 Dataset Tasks
+
+| Task       | Description                                     |
+|------------|--------------------------------------------------|
+| Twin       | Classify whether face pairs are real twins       |
+| Disguise   | Detect if one image is a disguised version       |
+| Wildlife   | Classify animal species from IR night images     |
+
+---
+
+## 🚀 Quickstart
 
 ```bash
-# Clone the repository
-git clone https://github.com/sihvenforucd/project-mllms_vision.git
-cd project-mllms_vision
-
-# Install required Python packages
+git clone https://github.com/your-username/VISBENCH-3.git
+cd VISBENCH-3
 pip install -r requirements.txt
+python run_benchmark.py --model Qwen2.5-VL --task disguise
 ```
-
 
 ---
 
-## Usage
+## 📁 Repository Structure
 
-### 1. Launch on Google Colab
-- Use the Colab badge above to open the `twin_benchmark.ipynb`.
-- Mount Google Drive and select GPU runtime.
-
-### 2. Load the Twin Dataset
-```python
-from twin_dataloader import TwinDataset
-
-twin_dataset = TwinDataset(
-    csv_path='/content/drive/MyDrive/vision_benchmark/metadata/twin_face_pairs_absolute.csv',
-    root_dir='/content/drive/MyDrive/vision_benchmark/data/twin_faces'
-)
 ```
-### 3. Run Benchmark
-```python
-from multi_mllm_runner import evaluate_twin_model
-
-results = evaluate_twin_model(
-    model_id="OpenGVLab/InternVL-Chat-V1-2",
-    twin_pairs=[(label, img1, img2) for label, img1, img2 in twin_dataset]
-)
+├── assets/                     # 📸 All plots and diagrams
+├── data/                       # 📂 Datasets for 3 tasks
+├── notebooks/                  # 🧠 Evaluation scripts
+├── src/                        # 🔧 Core benchmark engine
+└── README.md                   # 📘 This file
 ```
 
-### Save Results
-```python
-import pandas as pd
-pd.DataFrame(results).to_csv('twin_internvl_results.csv', index=False)
+---
+
+## 📈 Future Work
+
+- Expand to **video QA**, **multi-turn image chat**, and **VQA reasoning**
+- Add evaluation under **distribution shift** and **real-world noise**
+- Introduce **human-in-the-loop verification** for borderline cases
+
+---
+
+## 👨‍🔬 Authors
+
+- **Kiara** — Principal Researcher | UCD MSc | Vision-Language Systems
+- **Smart Optimization** — Project Lead & Benchmark Design
+
+---
+
+## 📄 License
+
+MIT License
+
+---
+
+## 📚 Citation
+
+```bibtex
+@misc{visbench3,
+  title={VISBENCH-3: Fine-Grained Vision Reasoning Benchmark for MLLMs},
+  author={Kiara, Smart Optimization},
+  year={2025},
+  url={https://github.com/your-username/VISBENCH-3}
+}
 ```
-
-## Directory Structure
-project-mllms_vision/
-│
-├── data/
-│   ├── twin_faces/
-│   └── disguise_faces/
-│
-├── metadata/
-│   ├── twin_face_pairs_absolute.csv
-│   ├── disguises_absolute.csv
-│
-├── notebooks/
-│   └── twin_benchmark.ipynb
-│
-├── twin_dataloader.py
-├── disguise_dataloader.py
-├── multi_mllm_runner.py
-├── opencv_twin_baseline.py
-└── metrics_logger.py
-
-## Models Supported
-- InternVL-Chat-V1-2 (InternVL2.5) — currently implemented
-
-- Qwen2.5-VL (planned)
-
-- LLaVA-OneVision (planned)
-
-- MiniGPT-4 (planned)
-
-
