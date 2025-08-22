@@ -93,18 +93,18 @@ VISBENCH-3 is a curated benchmark for evaluating **Multimodal Large Language Mod
 
 ### 🔸 Dataset Difficulty Ranking
 
-![Dataset Difficulty](results/dataset_difficulty.jpeg)
+![Dataset Difficulty](assets/dataset_difficulty.jpeg)
 
 ### 🔸 Model Performance Summary
 
-![Performance Table](results/F1_summary.jpeg)
+![Performance Table](assets/F1_summary.jpeg)
 
 ### 🔸 Accuracy and F1 Score Comparisons
 
 * Accuracy:
-  ![Accuracy](results/Accuracy_dataset.jpeg)
+  ![Accuracy](assets/Accuracy_dataset.jpeg)
 * F1 Score:
-  ![F1 Score](results/F1_dataset.jpeg)
+  ![F1 Score](assets/F1_dataset.jpeg)
 
 ### 🔸 Radar and Trend Analysis
 
