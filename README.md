@@ -109,9 +109,7 @@ VISBENCH-3 is a curated benchmark for evaluating **Multimodal Large Language Mod
 ### 🔸 Radar and Trend Analysis
 
 * Radar Plot (All Models):
-  ![Radar](results/radarplot.jpeg)
-* F1 Score Trend:
-  ![F1 Trend](results/F1_dataset.jpeg)
+  ![Radar](assets/radarplot.jpeg)
 ---
 
 ## 🖼️ Disguise Dataset Samples
