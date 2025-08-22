@@ -13,7 +13,7 @@
   <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" alt="Jupyter" width="50"/>
   <img src="https://colab.research.google.com/img/colab_favicon_256px.png" alt="Colab" width="50"/>
 </p>
----
+
 
 VISBENCH-3 is a curated benchmark for evaluating **Multimodal Large Language Models (MLLMs)** on fine-grained, real-world vision tasks:
 
