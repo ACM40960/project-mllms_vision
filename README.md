@@ -83,7 +83,36 @@ VISBENCH-3 is a curated benchmark for evaluating **Multimodal Large Language Mod
 | Wildlife | Classify animal species from IR night-vision |
 
 ---
+## 🧪 Tasks and Datasets
 
+* Each task poses unique challenges requiring detailed visual reasoning.
+* Twin and disguise tasks use facial image pairs.
+* Wildlife task involves species classification from low-light wildlife photos.
+---
+## 📊 Results Snapshot
+
+### 🔸 Dataset Difficulty Ranking
+
+![Dataset Difficulty](results/dataset_difficulty.jpeg)
+
+### 🔸 Model Performance Summary
+
+![Performance Table](results/F1_summary.jpeg)
+
+### 🔸 Accuracy and F1 Score Comparisons
+
+* Accuracy:
+  ![Accuracy](results/Accuracy_dataset.jpeg)
+* F1 Score:
+  ![F1 Score](results/F1_dataset.jpeg)
+
+### 🔸 Radar and Trend Analysis
+
+* Radar Plot (All Models):
+  ![Radar](results/radarplot.jpeg)
+* F1 Score Trend:
+  ![F1 Trend](results/F1_dataset.jpeg)
+---
 
 ## 🖼️ Disguise Dataset Samples
 
